@@ -1,0 +1,19 @@
+<% if (messages && messages.length) { %>
+  <div style="margin-top:12px">
+    <% messages.forEach(m => { %>
+      <% if (m.type === 'success') { %>
+        <div style="padding:10px;border-radius:6px;background:#ecfdf5;border:1px solid #bbf7d0;color:#065f46;margin-bottom:8px">
+          <strong>Success:</strong> <%= m.message %>
+        </div>
+      <% } else if (m.type === 'error') { %>
+        <div style="padding:10px;border-radius:6px;background:#fff1f2;border:1px solid #fecaca;color:#7f1d1d;margin-bottom:8px">
+          <strong>Error:</strong> <%= m.message %>
+        </div>
+      <% } else { %>
+        <div style="padding:10px;border-radius:6px;background:#eef2ff;border:1px solid #c7d2fe;color:#3730a3;margin-bottom:8px">
+          <%= m.message %>
+        </div>
+      <% } %>
+    <% }) %>
+  </div>
+<% } %>

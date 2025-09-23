@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Home</title><link rel="stylesheet" href="/styles.css"></head>
+<body>
+  <%- include('partials/header') %>
+  <main class="container">
+    <section class="card">
+      <h2>Welcome, <%= user.name %></h2>
+      <p>Below are the public football entries visible to all logged-in users.</p>
+    </section>
+
+    <section class="card">
+      <h3>Football Information</h3>
+      <% if (items && items.length) { %>
+        <ul>
+          <% items.forEach(i => { %>
+            <li><strong><%= i.title %></strong> (<%= i.type %>) — <%= i.description %></li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>No football entries yet.</p>
+      <% } %>
+    </section>
+  </main>
+  <%- include('partials/footer') %>
+</body>
+</html>

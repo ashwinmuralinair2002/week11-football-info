@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title><%= item ? 'Edit' : 'Create' %> Football Entry</title><link rel="stylesheet" href="/styles.css"></head>
+<body>
+  <%- include('../partials/header') %>
+  <main class="container">
+    <section class="card" style="max-width:720px;margin:0 auto">
+      <h2><%= item ? 'Edit' : 'Create' %> Football Entry</h2>
+      <% if (errors && errors.length) { %>
+        <ul><% errors.forEach(e => { %><li style="color:#b91c1c"><%= e.msg %></li><% }) %></ul>
+      <% } %>
+
+      <form method="post" action="<%= item ? '/admin/football/' + item._id + '/edit' : '/admin/football/create' %>">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <label>Title: <input name="title" value="<%= item ? item.title : '' %>"></label>
+        <label>Description: <textarea name="description"><%= item ? item.description : '' %></textarea></label>
+        <label>Type:
+          <select name="type">
+            <option value="club" <%= item && item.type==='club' ? 'selected' : '' %>>Club</option>
+            <option value="player" <%= item && item.type==='player' ? 'selected' : '' %>>Player</option>
+            <option value="match" <%= item && item.type==='match' ? 'selected' : '' %>>Match</option>
+          </select>
+        </label>
+        <div style="margin-top:12px"><button type="submit"><%= item ? 'Update' : 'Create' %></button></div>
+      </form>
+    </section>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

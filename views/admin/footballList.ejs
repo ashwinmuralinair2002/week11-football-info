@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Admin — Football</title><link rel="stylesheet" href="/styles.css"></head>
+<body>
+  <%- include('../partials/header') %>
+  <main class="container">
+    <section class="card">
+      <div class="top-actions">
+        <h2>Football Entries</h2>
+        <div style="margin-left:auto">
+          <a class="link" href="/admin/football/create">Add New</a>
+        </div>
+      </div>
+
+      <form method="get" action="/admin/football" class="top-actions">
+        <input class="search-input" name="q" value="<%= q %>" placeholder="Search title">
+        <label>Per page:
+          <select name="limit">
+            <% [5,10,20,50].forEach(l => { %>
+              <option value="<%= l %>" <%= (pagination && pagination.limit==l) ? 'selected' : '' %>><%= l %></option>
+            <% }) %>
+          </select>
+        </label>
+        <button>Search</button>
+      </form>
+
+      <% if (items && items.length) { %>
+        <table>
+          <thead><tr><th>Title</th><th>Type</th><th>Description</th><th>Actions</th></tr></thead>
+          <tbody>
+            <% items.forEach(i => { %>
+              <tr>
+                <td><%= i.title %></td>
+                <td><%= i.type %></td>
+                <td><%= i.description %></td>
+                <td>
+                  <a href="/admin/football/<%= i._id %>/edit">Edit</a>
+                  <form method="post" action="/admin/football/<%= i._id %>/delete" style="display:inline">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" onclick="return confirm('Delete entry?')">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+
+        <div style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+          <% const cur = (pagination && pagination.currentPage) || 1; const total = (pagination && pagination.totalPages) || 1; const lim = (pagination && pagination.limit) || 10; %>
+          <% function qs(page) { const params = new URLSearchParams(); if (q) params.set('q', q); if (lim) params.set('limit', lim); params.set('page', page); return '/admin/football?' + params.toString(); } %>
+
+          <% if (cur > 1) { %>
+            <a href="<%= qs(cur-1) %>">&laquo; Prev</a>
+          <% } %>
+
+          <% for (let p = 1; p <= total; p++) { %>
+            <% if (p === cur) { %>
+              <strong style="padding:6px 8px;border-radius:6px;background:#eef2ff"><%= p %></strong>
+            <% } else { %>
+              <a href="<%= qs(p) %>"><%= p %></a>
+            <% } %>
+          <% } %>
+
+          <% if (cur < total) { %>
+            <a href="<%= qs(cur+1) %>">Next &raquo;</a>
+          <% } %>
+        </div>
+
+      <% } else { %>
+        <p>No entries yet.</p>
+      <% } %>
+    </section>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

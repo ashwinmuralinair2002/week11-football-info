@@ -1,0 +1,24 @@
+<header class="site-header">
+  <div class="container">
+    <div class="brand">
+      <a href="/">⚽ Football Info</a>
+    </div>
+    <nav class="main-nav">
+      <a href="/">Home</a>
+      <% if (!currentUser) { %>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/signup">Signup</a>
+      <% } else { %>
+        <a href="/home">Dashboard</a>
+        <% if (currentUser.role === 'admin') { %>
+          <a href="/admin/football">Admin Football</a>
+          <a href="/admin/users">Admin Users</a>
+        <% } %>
+        <form method="post" action="/auth/logout" class="inline-form">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button class="link-button" type="submit">Logout</button>
+        </form>
+      <% } %>
+    </nav>
+  </div>
+</header>
