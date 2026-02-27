@@ -1,27 +1,72 @@
 <!doctype html>
-<html>
-<head><meta charset="utf-8"><title>Home</title><link rel="stylesheet" href="/styles.css"></head>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - ASH SPEAKS</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
 <body>
   <%- include('partials/header') %>
-  <main class="container">
-    <section class="card">
-      <h2>Welcome, <%= user.name %></h2>
-      <p>Below are the public football entries visible to all logged-in users.</p>
-    </section>
 
-    <section class="card">
-      <h3>Football Information</h3>
-      <% if (items && items.length) { %>
-        <ul>
-          <% items.forEach(i => { %>
-            <li><strong><%= i.title %></strong> (<%= i.type %>) — <%= i.description %></li>
-          <% }) %>
-        </ul>
-      <% } else { %>
-        <p>No football entries yet.</p>
-      <% } %>
-    </section>
-  </main>
-  <%- include('partials/footer') %>
+    <main class="container">
+      <% if (locals.flash && flash.message) { %>
+        <div class="alert alert-<%= flash.type === 'error' ? 'error' : 'success' %>">
+          <%= flash.message %>
+        </div>
+        <% } %>
+
+          <div class="card" style="margin-bottom: 2rem;">
+            <h2>Welcome back, <%= user.name %> 👋</h2>
+            <p style="margin:0;">Here is the latest data available to you. Admins will have additional options in their
+              panel.</p>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <h3>Football Information Hub</h3>
+              <span style="color:var(--text-muted); font-size: 0.9rem;">
+                <%= items && items.length ? items.length : 0 %> active entries
+              </span>
+            </div>
+
+            <% if (items && items.length) { %>
+              <div class="dashboard-grid">
+                <% items.forEach(i=> { %>
+                  <div class="card dashboard-item">
+                    <div>
+                      <span class="dashboard-item-type">
+                        <%= i.type %>
+                      </span>
+                      <h3>
+                        <%= i.title %>
+                      </h3>
+                    </div>
+                    <p>
+                      <%= i.description %>
+                    </p>
+
+                    <div
+                      style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                      <span style="font-size: 0.85rem; color: var(--text-muted);">
+                        View Details &rarr;
+                      </span>
+                    </div>
+                  </div>
+                  <% }) %>
+              </div>
+              <% } else { %>
+                <div class="card" style="text-align: center; padding: 4rem 2rem;">
+                  <h3 style="color: var(--text-muted);">No entries found</h3>
+                  <p>There are no football records available at the moment.</p>
+                </div>
+                <% } %>
+          </div>
+    </main>
+
+    <%- include('partials/footer') %>
 </body>
+
 </html>

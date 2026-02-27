@@ -1,26 +1,64 @@
 <!doctype html>
-<html>
-<head><meta charset="utf-8"><title>Signup</title><link rel="stylesheet" href="/styles.css"></head>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up - ASH SPEAKS</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
 <body>
   <%- include('partials/header') %>
-  <main class="container">
-    <section class="card" style="max-width:560px;margin:0 auto;">
-      <h2>Create an account</h2>
-      <% if (errors && errors.length) { %>
-        <ul><% errors.forEach(e => { %><li style="color:#b91c1c"><%= e.msg %></li><% }) %></ul>
-      <% } %>
-      <form method="post" action="/auth/signup">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <label>Name: <input name="name" value="<%= formData.name || '' %>"></label>
-        <label>Email: <input name="email" value="<%= formData.email || '' %>"></label>
-        <label>Password: <input type="password" name="password"></label>
-        <div style="margin-top:12px">
-          <button type="submit">Signup</button>
-          <a href="/auth/login" style="margin-left:12px;">Already have account?</a>
-        </div>
-      </form>
-    </section>
-  </main>
-  <%- include('partials/footer') %>
+
+    <main class="container auth-wrapper">
+      <div class="card auth-card">
+        <h2>Create an Account</h2>
+
+        <% if (errors && errors.length) { %>
+          <div class="alert alert-error">
+            <ul>
+              <% errors.forEach(e=> { %>
+                <li>
+                  <%= e.msg %>
+                </li>
+                <% }) %>
+            </ul>
+          </div>
+          <% } %>
+
+            <form method="post" action="/auth/signup">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="name" value="<%= formData.name || '' %>" placeholder="Your Name" required
+                  autofocus>
+              </div>
+
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" value="<%= formData.email || '' %>"
+                  placeholder="Enter your email address" required>
+              </div>
+
+              <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Create a password" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block"
+                style="margin-top: 1rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: #fff; box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.4);">Join
+                the Community</button>
+            </form>
+
+            <div class="auth-footer">
+              <p>Already have an account? <a href="/auth/login">Log in here</a></p>
+            </div>
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
 </body>
+
 </html>

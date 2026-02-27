@@ -66,9 +66,9 @@ app.use('/auth', authRoutes);
 app.use('/admin/football', adminFootballRoutes);
 app.use('/admin/users', adminUsersRoutes);
 app.use('/', userRoutes);
-// test route
+// index route
 app.get('/', (req, res) => {
-  res.send('<h1>Football Info App</h1><p>Server is running ✅</p>');
+  res.render('index');
 });
 
 // error handler

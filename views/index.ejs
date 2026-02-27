@@ -1,19 +1,73 @@
 <!doctype html>
-<html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>Football Info - Welcome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASH SPEAKS - The Premium Football Hub</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
   <%- include('partials/header') %>
-  <main class="container">
-    <section class="card">
-      <h1>Welcome to Football Info</h1>
-      <p>Sign up or log in to view football content. Admins can manage football entries and users.</p>
-      <p class="muted">This app demonstrates Node.js + Express + MongoDB with role-based access and CRUD operations.</p>
-    </section>
-  </main>
-  <%- include('partials/footer') %>
+
+    <main class="container">
+      <div class="hero">
+        <h1>ASH SPEAKS</h1>
+        <p>The Ultimate Football Hub. Discover deep insights, comprehensive stats, and the beautiful game with a modern
+          touch.</p>
+
+        <div class="hero-actions">
+          <% if (currentUser) { %>
+            <a href="/home" class="btn btn-primary">Go to Dashboard</a>
+            <% } %>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div style="margin-top: 2rem;">
+        <h2 style="text-align: center; margin-bottom: 2rem; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Why
+          ASH SPEAKS?</h2>
+
+        <div
+          style="display: flex; gap: 2rem; margin-bottom: 3rem; align-items: center; background: rgba(0,0,0,0.4); border-radius: 16px; padding: 2rem; border: 1px solid var(--border-color); backdrop-filter: blur(8px);">
+          <img src="/images/player_action_1_1772211741149.png" alt="Player striking the ball"
+            style="width: 300px; height: 300px; object-fit: cover; border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+          <div style="color: #fff;">
+            <h3 style="font-size: 2rem; color: var(--accent-secondary);">The Beautiful Game, Unfiltered</h3>
+            <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 1.5rem;">Dive into the action with real-time
+              statistics, deep historical trivia, and an admin-curated database of the greatest moments in football
+              history.</p>
+            <div
+              style="background: rgba(220, 38, 38, 0.2); border-left: 4px solid var(--accent-primary); padding: 1rem; border-radius: 0 8px 8px 0;">
+              <p style="margin: 0; font-style: italic; color: #f8fafc;"><strong>Did you know?</strong> Pelé is the only
+                football player in history to have won three FIFA World Cups (1958, 1962, and 1970), cementing his
+                legacy as one of the greatest.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3 style="color:var(--text-main); font-size:1.4rem;">Real-time Insights</h3>
+            <p style="margin-top:0.75rem;">Access the latest football datastore, structured perfectly for both fans and
+              analysts to find what they need instantly.</p>
+          </div>
+          <div class="card">
+            <h3 style="color:var(--text-main); font-size:1.4rem;">Admin Control</h3>
+            <p style="margin-top:0.75rem;">Role-based access protects sensitive data while giving administrators full
+              CRUD capabilities directly from their dashboard.</p>
+          </div>
+          <div class="card">
+            <h3 style="color:var(--text-main); font-size:1.4rem;">Premium Design</h3>
+            <p style="margin-top:0.75rem;">Built with a state-of-the-art glassmorphism ui, ensuring your experience is
+              not just functional, but visually stunning.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
 </body>
+
 </html>
