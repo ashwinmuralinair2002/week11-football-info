@@ -414,3 +414,131 @@ button,
   justify-content: center;
   gap: 1rem;
 }
+/* ASH SPEAKS colour theme overrides */
+:root {
+  --bg-dark: #0B1220;
+  --bg-card: #F8FAFC;
+  --text-main: #172033;
+  --text-muted: #64748B;
+  --accent-primary: #22C55E;
+  --accent-secondary: #38BDF8;
+  --border-color: #E2E8F0;
+}
+
+body {
+  background-color: #0B1220 !important;
+  color: #F8FAFC;
+}
+
+.site-header,
+header {
+  background-color: #0F172A !important;
+  color: #F8FAFC;
+}
+
+.site-header a,
+.main-nav a,
+nav a {
+  color: #F8FAFC;
+}
+
+.card,
+.dashboard-card,
+.dashboard-item,
+.auth-card,
+.form-card,
+.admin-card,
+.alert,
+.notification {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+  color: #172033 !important;
+}
+
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.dashboard-card h1,
+.dashboard-card h2,
+.dashboard-card h3,
+.dashboard-item h1,
+.dashboard-item h2,
+.dashboard-item h3,
+.auth-card h1,
+.auth-card h2,
+.auth-card h3,
+label {
+  color: #172033 !important;
+}
+
+p,
+.muted,
+.text-muted,
+small {
+  color: #64748B;
+}
+
+.btn,
+button,
+input[type="submit"],
+input[type="button"] {
+  background-color: #22C55E;
+  border-color: #22C55E;
+  color: #0B1220;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: #16A34A;
+  border-color: #16A34A;
+}
+
+.btn:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline-color: #38BDF8;
+  border-color: #38BDF8;
+}
+
+input,
+select,
+textarea {
+  background-color: #F8FAFC;
+  border-color: #E2E8F0;
+  color: #172033;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #64748B;
+}
+
+.success,
+.alert-success {
+  border-color: #22C55E;
+  color: #166534;
+}
+
+.danger,
+.error,
+.alert-danger,
+.alert-error {
+  border-color: #EF4444;
+  color: #B91C1C;
+}
+
+.site-footer,
+footer {
+  background-color: #0F172A;
+  color: #F8FAFC;
+}
+
+.site-footer p,
+footer p {
+  color: #CBD5E1;
+}

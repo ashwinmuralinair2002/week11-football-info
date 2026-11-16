@@ -22,7 +22,7 @@ connectDB(process.env.MONGO_URI).catch((err) => {
 });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3256;
 
 // middlewares
 app.set('view engine', 'ejs');
